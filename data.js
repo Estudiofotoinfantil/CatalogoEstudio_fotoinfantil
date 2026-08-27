@@ -882,21 +882,25 @@ const packs = [
 ];
 
 /* Fotos reales para las secciones Mes a Mes y Pre-Añito.
-   Se reutilizan fotografías del estudio ya provistas — sin inventar contenido nuevo. */
+   Orden respetado tal cual fue enviado por el cliente. */
 const mesAMesGallery = [
-  "https://i.ibb.co/q3wJzmT1/Abejita-Chiquitita.jpg",
-  "https://i.ibb.co/hxcjrWGW/Arcoiris.jpg",
-  "https://i.ibb.co/CsYtWkf2/Coneja.jpg",
-  "https://i.ibb.co/d4H8G8Fp/Frutillita.jpg",
-  "https://i.ibb.co/zWjh2ZZk/Cerdito-Enojon.jpg",
-  "https://i.ibb.co/vxb7nC2w/Cenicienta.jpg"
+  "https://i.ibb.co/GQjBq7m4/DSC0066.jpg",
+  "https://i.ibb.co/Swx6ZP17/2.jpg",
+  "https://i.ibb.co/HfKN3nQ9/3.jpg",
+  "https://i.ibb.co/B0bGdJy/4.jpg",
+  "https://i.ibb.co/VcSywLdG/5.jpg",
+  "https://i.ibb.co/bgwb8KMT/6.jpg",
+  "https://i.ibb.co/NdKMHPCL/7.jpg",
+  "https://i.ibb.co/3yHYNZht/9.jpg"
 ];
 
 const preAnitoGallery = [
-  "https://i.ibb.co/C5JNvX5V/Margarita.jpg",
-  "https://i.ibb.co/93S3kmQD/Luli-Pampin.jpg",
-  "https://i.ibb.co/Rk9dy5Xg/Mickey-rey.jpg",
-  "https://i.ibb.co/wFXVFs6P/La-bella-y-la-bestia.jpg",
-  "https://i.ibb.co/27x1RRN1/Marinero.jpg",
-  "https://i.ibb.co/BV3gM6Yv/Rey.jpg"
+  "https://i.ibb.co/Fqq5NBxR/DSC0400.jpg",
+  "https://i.ibb.co/qYP5FFn8/Safari-plim-plim1.jpg",
+  "https://i.ibb.co/5gw7HFrJ/DSC0078.jpg",
+  "https://i.ibb.co/FSdVfmT/Safari-plim-plim3.jpg",
+  "https://i.ibb.co/8LMC6TpF/Margarita1.jpg",
+  "https://i.ibb.co/9mxXNVKX/Cerdito-Enojon6.jpg",
+  "https://i.ibb.co/zgjG0FW/Mariposa-Lila1.jpg",
+  "https://i.ibb.co/PGtwhQcT/Circo-Rosa.jpg"
 ];
