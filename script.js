@@ -72,6 +72,22 @@
   }
 
   /* ============================================================
+     HERO — carrusel animado, avanza solo (sin necesidad de tocar)
+     ============================================================ */
+  function initHeroCarousel() {
+    const slides = $$(".hero-slide", $("#heroMedia"));
+    if (slides.length < 2) return;
+    let active = 0;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const interval = prefersReducedMotion ? 6000 : 4500;
+    setInterval(() => {
+      slides[active].classList.remove("is-active");
+      active = (active + 1) % slides.length;
+      slides[active].classList.add("is-active");
+    }, interval);
+  }
+
+  /* ============================================================
      PICKER (Mes a Mes / Temáticos / Pre-Añito) → scroll suave
      ============================================================ */
   $$("[data-goto]").forEach(btn => {
@@ -445,6 +461,7 @@
      INIT
      ============================================================ */
   function init() {
+    initHeroCarousel();
     wireGenericWhatsappButtons();
     renderFooterInfo();
     renderThemesGrid();
