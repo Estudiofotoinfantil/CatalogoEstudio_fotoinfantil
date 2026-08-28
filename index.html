@@ -62,11 +62,20 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="inicio">
+    <!--
+      Carrusel del hero: 4 fotos, avanzan solas con crossfade.
+      Cada <img> tiene su propio "punto de enfoque" con la variable --pos
+      (formato: "horizontal vertical", ej: "center 20%" = centrado, cerca de arriba).
+      Si en el celular una foto se ve cortada o descentrada, ajustá el valor
+      de --pos de ESA imagen: bajá el % para mostrar más arriba de la foto,
+      subí el % para mostrar más abajo. --pos-desktop es opcional, por si en
+      pantallas grandes necesita un encuadre distinto al de mobile.
+    -->
     <div class="hero-media" id="heroMedia">
-      <img class="hero-slide is-active" src="https://i.ibb.co/fzNhSdSC/DSC0096.jpg" alt="Sesión real de fotografía infantil, Estudio Fotoinfantil" fetchpriority="high">
-      <img class="hero-slide" src="https://i.ibb.co/Dfr7g5sN/DSC0182.jpg" alt="Sesión real de fotografía infantil, Estudio Fotoinfantil" loading="lazy" decoding="async">
-      <img class="hero-slide" src="https://i.ibb.co/Xx9Yt12D/Hello-kity.jpg" alt="Sesión real temática Hello Kitty, Estudio Fotoinfantil" loading="lazy" decoding="async">
-      <img class="hero-slide" src="https://i.ibb.co/gF9t1JZF/Margarita1.jpg" alt="Sesión real temática Margaritas, Estudio Fotoinfantil" loading="lazy" decoding="async">
+      <img class="hero-slide is-active" style="--pos: center 20%;" src="https://i.ibb.co/fzNhSdSC/DSC0096.jpg" alt="Sesión real de fotografía infantil, Estudio Fotoinfantil" fetchpriority="high">
+      <img class="hero-slide" style="--pos: center 20%;" src="https://i.ibb.co/Dfr7g5sN/DSC0182.jpg" alt="Sesión real de fotografía infantil, Estudio Fotoinfantil" loading="lazy" decoding="async">
+      <img class="hero-slide" style="--pos: center 15%;" src="https://i.ibb.co/Xx9Yt12D/Hello-kity.jpg" alt="Sesión real temática Hello Kitty, Estudio Fotoinfantil" loading="lazy" decoding="async">
+      <img class="hero-slide" style="--pos: center 18%;" src="https://i.ibb.co/gF9t1JZF/Margarita1.jpg" alt="Sesión real temática Margaritas, Estudio Fotoinfantil" loading="lazy" decoding="async">
     </div>
     <div class="hero-inner">
       <span class="hero-brand">Estudio Fotoinfantil</span>
