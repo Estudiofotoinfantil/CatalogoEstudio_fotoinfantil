@@ -829,8 +829,8 @@ const studio = {
   location: "Gregorio de Laferrere · La Matanza · Buenos Aires",
   instagram: "@estudiofotoinfantil",
   instagramUrl: "https://instagram.com/estudiofotoinfantil",
-  whatsapp: "5491165119034",
-  whatsappDisplay: "+54 9 11 6511-9034",
+  whatsapp: "5491130448139",
+  whatsappDisplay: "+54 9 11 3044-8139",
   hours: "Lunes a sábado + feriados · 08:00 a 20:00",
   deposit: "$13.000",
   paymentMethods: "Efectivo y transferencia"
