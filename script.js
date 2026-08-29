@@ -120,6 +120,7 @@
     $("#footerLocation").textContent = studio.location;
     $("#footerInstagram").textContent = studio.instagram;
     $("#footerInstagram").href = studio.instagramUrl;
+    $("#footerInstagramCta").href = studio.instagramUrl;
     $("#footerHours").textContent = studio.hours;
     $("#year").textContent = new Date().getFullYear();
   }
