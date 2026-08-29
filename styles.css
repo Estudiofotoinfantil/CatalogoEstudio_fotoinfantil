@@ -253,7 +253,7 @@ section { padding: 76px 0; position: relative; }
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 86svh;
   display: flex;
   align-items: flex-end;
   padding: 0;
@@ -267,7 +267,7 @@ section { padding: 76px 0; position: relative; }
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: center 25%;
+  object-position: var(--pos, center 22%);
   opacity: 0;
   transform: scale(1.06);
   transition: opacity 1.6s var(--ease), transform 7s linear;
@@ -278,6 +278,9 @@ section { padding: 76px 0; position: relative; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { transition: opacity 1.6s var(--ease); transform: none !important; }
+}
+@media (min-width: 860px) {
+  .hero-slide { object-position: var(--pos-desktop, var(--pos, center 22%)); }
 }
 .hero-media::after {
   content: "";
@@ -846,8 +849,28 @@ footer {
 .footer-info { display: flex; flex-direction: column; gap: 12px; font-size: 14.5px; }
 .footer-info .row { display: flex; gap: 10px; align-items: flex-start; }
 .footer-info svg { flex-shrink: 0; margin-top: 2px; opacity: 0.7; }
-.footer-info a:hover { color: var(--gold-soft); }
-.footer-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 30px 0 20px; }
+.footer-info a { border-bottom: 1px solid transparent; transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.footer-info a:hover { color: var(--gold-soft); border-color: rgba(231,211,168,0.5); }
+.footer-divider { height: 1px; background: rgba(255,255,255,0.12); margin: 30px 0 22px; }
+.footer-ig-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(231,211,168,0.35);
+  color: var(--gold-soft);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.footer-ig-cta:hover {
+  background: rgba(231,211,168,0.12);
+  border-color: var(--gold-soft);
+  transform: translateY(-2px);
+}
 .footer-bottom { font-size: 12.5px; color: rgba(255,255,255,0.4); }
 
 /* ---------- WHATSAPP FLOAT (mobile) ---------- */
@@ -856,16 +879,42 @@ footer {
   right: 18px;
   bottom: 18px;
   z-index: 150;
-  width: 58px; height: 58px;
+  width: 54px; height: 54px;
   border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 10px 28px -6px rgba(58,50,43,0.35);
+  background: linear-gradient(155deg, var(--paper) 0%, var(--beige-soft) 100%);
+  box-shadow: 0 10px 26px -8px rgba(58,50,43,0.28), 0 0 0 1px rgba(189,154,95,0.18) inset;
   display: flex; align-items: center; justify-content: center;
-  border: 1px solid var(--beige);
-  transition: transform var(--t-fast) var(--ease);
+  border: 1px solid var(--gold-soft);
+  color: #4B8F6B;
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  animation: waFloatIn 700ms var(--ease) 1.2s both;
 }
-.wa-float:hover { transform: scale(1.06); }
-.wa-float svg { width: 30px; height: 30px; }
+.wa-float:hover {
+  transform: scale(1.07) translateY(-2px);
+  box-shadow: 0 14px 32px -8px rgba(58,50,43,0.34), 0 0 0 1px rgba(189,154,95,0.3) inset;
+}
+.wa-float:active { transform: scale(0.96); }
+.wa-float svg { width: 25px; height: 25px; position: relative; z-index: 1; }
+.wa-float-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-soft);
+  opacity: 0;
+  animation: waRingPulse 2600ms var(--ease) 2s 2;
+}
+@keyframes waFloatIn {
+  from { opacity: 0; transform: scale(0.6) translateY(12px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes waRingPulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wa-float { animation: none; }
+  .wa-float-ring { animation: none; display: none; }
+}
 
 /* ---------- LOADING SKELETON (perf) ---------- */
 .theme-card img[loading] { background: var(--beige-soft); }
