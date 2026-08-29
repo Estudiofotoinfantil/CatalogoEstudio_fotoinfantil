@@ -18,6 +18,30 @@
       .trim();
   }
 
+  /* ------------------------------------------------------------
+     OPTIMIZACIÓN DE IMÁGENES
+     Las fotos originales pesan ~330-400kb (pensadas para verse a
+     tamaño completo), pero en el catálogo se muestran en tarjetas
+     chiquitas. En vez de re-subir todo, las servimos a través de
+     wsrv.nl (proxy de imágenes gratuito, sin registro) que las
+     redimensiona y comprime al vuelo al tamaño exacto que se
+     necesita, en formato WebP. Resultado: de ~350kb a ~15-40kb
+     por foto en el catálogo, sin tocar los archivos originales.
+     `w` = ancho en px que se necesita mostrar (aprox. 2x para retina).
+     ------------------------------------------------------------ */
+  function optimizedImg(url, w, q = 76) {
+    const bare = url.replace(/^https?:\/\//, "");
+    return `https://wsrv.nl/?url=${encodeURIComponent(bare)}&w=${w}&q=${q}&output=webp&a=attention`;
+  }
+
+  // Red de seguridad: si el proxy de imágenes fallara alguna vez,
+  // la foto cae automáticamente a la original en vez de romperse.
+  window.handleImgFallback = function (img) {
+    if (img.dataset.fallback && img.src !== img.dataset.fallback) {
+      img.src = img.dataset.fallback;
+    }
+  };
+
   function waLink(message) {
     return `https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(message)}`;
   }
@@ -163,7 +187,7 @@
     return `
       <button class="theme-card ${hasGallery ? "" : "no-gallery"} reveal is-visible" data-theme-id="${theme.id}" aria-label="Ver temática ${theme.name}">
         <span class="theme-card-badge">${hasGallery ? "Con sesión real" : "Nueva"}</span>
-        <img src="${theme.cover}" alt="Escenario de la temática ${theme.name}, Estudio Fotoinfantil" loading="lazy" decoding="async" width="400" height="533">
+        <img src="${optimizedImg(theme.cover, 420)}" data-fallback="${theme.cover}" alt="Escenario de la temática ${theme.name}, Estudio Fotoinfantil" loading="lazy" decoding="async" width="400" height="533" onload="this.classList.add('is-loaded')" onerror="handleImgFallback(this)">
         <span class="theme-card-label">
           <span class="tname">${theme.name}</span>
         </span>
@@ -250,7 +274,7 @@
         <div>
           <div class="compare-label"><span class="num">1</span>El escenario</div>
           <div class="scenario-photo">
-            <img src="${theme.cover}" alt="Escenario vacío de la temática ${theme.name}" loading="lazy" decoding="async">
+            <img src="${optimizedImg(theme.cover, 700)}" data-fallback="${theme.cover}" alt="Escenario vacío de la temática ${theme.name}" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" onerror="handleImgFallback(this)">
           </div>
         </div>
         ${hasGallery ? `
@@ -264,7 +288,7 @@
           <div class="result-gallery">
             ${theme.gallery.map((src, i) => `
               <div class="g-item" data-lightbox-src="${src}" data-lightbox-index="${i}">
-                <img src="${src}" alt="Foto real de sesión infantil, temática ${theme.name}" loading="lazy" decoding="async">
+                <img src="${optimizedImg(src, i === 0 ? 700 : 380)}" data-fallback="${src}" alt="Foto real de sesión infantil, temática ${theme.name}" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" onerror="handleImgFallback(this)">
               </div>
             `).join("")}
           </div>
@@ -371,7 +395,8 @@
     lightbox.classList.add("is-open");
   }
   function updateLightboxImage() {
-    lightboxImg.src = lbImages[lbIndex];
+    lightboxImg.src = optimizedImg(lbImages[lbIndex], 1500, 82);
+    lightboxImg.dataset.fallback = lbImages[lbIndex];
     lightboxCounter.textContent = `${lbIndex + 1} / ${lbImages.length}`;
   }
   function closeLightbox() { lightbox.classList.remove("is-open"); }
@@ -381,6 +406,7 @@
   $("#lightboxClose").addEventListener("click", closeLightbox);
   $("#lightboxPrev").addEventListener("click", lightboxPrev);
   $("#lightboxNext").addEventListener("click", lightboxNext);
+  lightboxImg.addEventListener("error", () => handleImgFallback(lightboxImg));
   lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 
   document.addEventListener("keydown", (e) => {
@@ -409,7 +435,7 @@
   function renderStrip(containerSel, images, altBase) {
     const el = $(containerSel);
     el.innerHTML = images.map(src => `
-      <img src="${src}" alt="${altBase}, Estudio Fotoinfantil" loading="lazy" decoding="async">
+      <img src="${optimizedImg(src, 260)}" data-fallback="${src}" alt="${altBase}, Estudio Fotoinfantil" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" onerror="handleImgFallback(this)">
     `).join("");
   }
 
