@@ -37,7 +37,6 @@
 
     <nav class="nav-list" aria-label="Navegación principal">
       <a href="#inicio">Inicio</a>
-      <a href="#sesiones">Sesiones</a>
       <a href="#tematicas">Temáticas</a>
       <a href="#packs">Packs</a>
       <a href="#preguntas">Preguntas</a>
@@ -55,7 +54,6 @@
 <!-- ============ MOBILE MENU ============ -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Menú móvil">
   <a href="#inicio">Inicio</a>
-  <a href="#sesiones">Sesiones</a>
   <a href="#tematicas">Temáticas</a>
   <a href="#packs">Packs</a>
   <a href="#preguntas">Preguntas</a>
@@ -96,39 +94,6 @@
     </div>
   </section>
 
-  <!-- ============ ELEGÍ TU SESIÓN ============ -->
-  <section id="sesiones">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Sesiones</span>
-        <h2>¿Qué momento querés guardar?</h2>
-      </div>
-
-      <div class="picker-grid">
-        <button class="picker-card card-mesames reveal" data-goto="mesames">
-          <div class="picker-icon">🌸</div>
-          <h3>Mes a Mes</h3>
-          <p>Cada etapa merece ser recordada.</p>
-          <span class="picker-go">Descubrir <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </button>
-
-        <button class="picker-card card-tematicos reveal" data-goto="tematicas">
-          <div class="picker-icon">✨</div>
-          <h3>Temáticos</h3>
-          <p>Vos imaginás la historia. Nosotros creamos el escenario.</p>
-          <span class="picker-go">Descubrir <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </button>
-
-        <button class="picker-card card-anito reveal" data-goto="anito">
-          <div class="picker-icon">🎂</div>
-          <h3>Pre-Añito</h3>
-          <p>Una sesión especial antes de soplar la primera velita.</p>
-          <span class="picker-go">Descubrir <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </button>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ TEMÁTICAS (sección principal) ============ -->
   <section id="tematicas">
     <div class="container">
@@ -146,9 +111,7 @@
 
         <div class="filter-row" id="typeFilters" role="tablist" aria-label="Filtrar por tipo">
           <button class="chip is-active" data-filter-type="todas">Todas</button>
-          <button class="chip" data-filter-type="mesames">Mes a Mes</button>
           <button class="chip" data-filter-type="tematicos">Temáticos</button>
-          <button class="chip" data-filter-type="anito">Pre-Añito</button>
         </div>
 
         <div class="filter-row" id="genderFilters" role="tablist" aria-label="Filtrar por inspiración">
@@ -164,36 +127,6 @@
 
       <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
         <button class="btn btn-outline" id="loadMoreBtn">Ver más temáticas</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ MES A MES ============ -->
-  <section id="mesames" class="banner-section section-mesames">
-    <div class="container">
-      <div class="banner-card reveal">
-        <div class="banner-content">
-          <span class="eyebrow">🌸 Sesiones</span>
-          <h2>Mes a Mes</h2>
-          <p>Porque cada mes cambia un poquito... y algún día vas a querer volver a verlo así.</p>
-          <a href="#" class="btn btn-primary wa-trigger" data-wa-msg="mesames">Quiero hacer una sesión</a>
-        </div>
-        <div class="banner-strip" id="mesAMesStrip"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ PRE-AÑITO ============ -->
-  <section id="anito" class="banner-section">
-    <div class="container">
-      <div class="banner-card reveal">
-        <div class="banner-content">
-          <span class="eyebrow">🎂 Sesiones</span>
-          <h2>Pre-Añito</h2>
-          <p>Un año está por llegar. Antes de soplar la primera velita, guardemos este momento.</p>
-          <a href="#" class="btn btn-primary wa-trigger" data-wa-msg="anito">Consultar Pre-Añito</a>
-        </div>
-        <div class="banner-strip" id="preAnitoStrip"></div>
       </div>
     </div>
   </section>
