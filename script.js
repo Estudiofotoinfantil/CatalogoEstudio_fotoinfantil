@@ -34,13 +34,8 @@
     return `https://wsrv.nl/?url=${encodeURIComponent(bare)}&w=${w}&q=${q}&output=webp&a=attention`;
   }
 
-  // Red de seguridad: si el proxy de imágenes fallara alguna vez,
-  // la foto cae automáticamente a la original en vez de romperse.
-  window.handleImgFallback = function (img) {
-    if (img.dataset.fallback && img.src !== img.dataset.fallback) {
-      img.src = img.dataset.fallback;
-    }
-  };
+  // (handleImgFallback ahora se define en el <head> de index.html,
+  // para que exista antes de que cualquier imagen pueda fallar)
 
   function waLink(message) {
     return `https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(message)}`;
@@ -112,16 +107,6 @@
   }
 
   /* ============================================================
-     PICKER (Mes a Mes / Temáticos / Pre-Añito) → scroll suave
-     ============================================================ */
-  $$("[data-goto]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = document.getElementById(btn.dataset.goto);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
-
-  /* ============================================================
      WHATSAPP: header, hero, footer, float, banners genéricos
      ============================================================ */
   function wireGenericWhatsappButtons() {
@@ -159,7 +144,6 @@
   const searchInput = $("#searchInput");
 
   const state = {
-    type: "todas",
     gender: "todos",
     query: "",
     visibleCount: 12
@@ -175,10 +159,9 @@
 
   function getFilteredThemes() {
     return themes.filter(t => {
-      const typeOk = state.type === "todas" || t.category === state.type;
       const genderOk = state.gender === "todos" || t.gender === "todos" || t.gender === state.gender;
       const queryOk = themeMatchesQuery(t, state.query);
-      return typeOk && genderOk && queryOk;
+      return genderOk && queryOk;
     });
   }
 
@@ -225,16 +208,6 @@
 
   loadMoreBtn.addEventListener("click", () => {
     state.visibleCount += PAGE_SIZE;
-    renderThemesGrid();
-  });
-
-  $("#typeFilters").addEventListener("click", (e) => {
-    const chip = e.target.closest("[data-filter-type]");
-    if (!chip) return;
-    $$("#typeFilters .chip").forEach(c => c.classList.remove("is-active"));
-    chip.classList.add("is-active");
-    state.type = chip.dataset.filterType;
-    state.visibleCount = PAGE_SIZE;
     renderThemesGrid();
   });
 
@@ -430,16 +403,6 @@
   })();
 
   /* ============================================================
-     MES A MES / PRE-AÑITO — tiras de fotos
-     ============================================================ */
-  function renderStrip(containerSel, images, altBase) {
-    const el = $(containerSel);
-    el.innerHTML = images.map(src => `
-      <img src="${optimizedImg(src, 260)}" data-fallback="${src}" alt="${altBase}, Estudio Fotoinfantil" loading="lazy" decoding="async" onload="this.classList.add('is-loaded')" onerror="handleImgFallback(this)">
-    `).join("");
-  }
-
-  /* ============================================================
      PACKS
      ============================================================ */
   function renderPacks() {
@@ -492,8 +455,6 @@
     wireGenericWhatsappButtons();
     renderFooterInfo();
     renderThemesGrid();
-    renderStrip("#mesAMesStrip", mesAMesGallery, "Sesión Mes a Mes");
-    renderStrip("#preAnitoStrip", preAnitoGallery, "Sesión Pre-Añito");
     renderPacks();
     renderReservaSteps();
     observeReveals();
