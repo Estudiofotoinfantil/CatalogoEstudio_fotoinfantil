@@ -421,12 +421,12 @@ section { padding: 76px 0; position: relative; }
   border-radius: var(--r-md);
   overflow: hidden;
   position: relative;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   cursor: pointer;
   background: var(--beige-soft);
   transition: transform var(--t-fast) var(--ease);
   content-visibility: auto;
-  contain-intrinsic-size: 280px 373px;
+  contain-intrinsic-size: 280px 210px;
 }
 .theme-card:hover { transform: translateY(-3px); }
 .theme-card img {
